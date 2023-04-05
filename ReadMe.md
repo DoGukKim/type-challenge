@@ -1,3 +1,7 @@
-# 타입 챌린지
+<p align='center'>
+<img src='./logo.svg' width='400'/>
+</p>
 
-이 저장소는 타입 챌린지 문제를 풀이한 코드가 있습니다.
+<p align='center'>
+타입스크립트 타입 챌린지 모음
+</p>
