@@ -19,4 +19,8 @@ type cases = [
 type error = MyAwaited<number>;
 
 // ============= Your Code Here =============
-// type MyAwaited<T extends Promise<>> = T extends Promise<infer R> ? R : T;
+type MyAwaited<T extends PromiseLike<any>> = T extends PromiseLike<infer P>
+  ? P extends Promise<unknown>
+    ? MyAwaited<P>
+    : P
+  : never;
