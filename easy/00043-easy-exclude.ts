@@ -11,3 +11,4 @@ type cases = [
 
 // ============= Your Code Here =============
 type MyExclude<T, U> = T extends U ? never : T;
+// type MyExclude<T, U> = T extends infer E ? (E extends U ? never : E) : never;
