@@ -28,5 +28,5 @@ type error = TupleToObject<[[1, 2], {}]>;
 
 // ============= Your Code Here =============
 type TupleToObject<T extends readonly (string | number | symbol)[]> = {
-  [value in T[number]]: value;
+  [V in T[number]]: V;
 };
