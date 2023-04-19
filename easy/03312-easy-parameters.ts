@@ -12,8 +12,6 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type MyParameters<T extends (...args: any) => any> = T extends (
-  ...args: infer A
-) => any
+type MyParameters<T extends Function> = T extends (...args: infer A) => any
   ? A
   : never;
