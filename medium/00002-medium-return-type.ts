@@ -21,6 +21,7 @@ const fn = (v: boolean) => (v ? 1 : 2);
 const fn1 = (v: boolean, w: any) => (v ? 1 : 2);
 
 // ============= Your Code Here =============
+// MyReturnType<T extends Function>도 가능하다.
 type MyReturnType<T extends (...arg: any) => unknown> = T extends (
   ...arg: any
 ) => infer R
