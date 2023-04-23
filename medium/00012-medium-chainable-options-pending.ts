@@ -44,10 +44,11 @@ type Expected3 = {
 };
 
 // ============= Your Code Here =============
+//{ [P in K]: typeof value }도 된다.
 type Chainable<T extends Object = {}> = {
   option: <K extends string, V>(
     key: K extends keyof T ? never : K,
     value: V
   ) => Chainable<Omit<T, K> & { [P in K]: V }>;
-  get: () => T;
+  get: () => { [P in keyof T]: T[P] };
 };
