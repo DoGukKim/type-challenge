@@ -8,4 +8,4 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Unshift<T extends unknown[], U> = [U, ...T];
+type Unshift<T extends unknown[], V> = [V, ...T];

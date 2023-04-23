@@ -8,4 +8,4 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Push<T extends unknown[], U> = [...T, U];
+type Push<T extends unknown[], V> = [...T, V];
