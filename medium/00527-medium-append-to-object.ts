@@ -50,8 +50,6 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type T = AppendToObject<test1, "home", boolean>;
-type AppendToObject<T extends Object, K extends string | symbol | number, V> = {
-  [P in keyof T]: T[P];
-} & { [P in K]: V };
-// 결합이 되서 같긴한데,
+type AppendToObject<T, K extends string | symbol | number, V> = {
+  [P in keyof T | K]: P extends keyof T ? T[P] : V;
+};
