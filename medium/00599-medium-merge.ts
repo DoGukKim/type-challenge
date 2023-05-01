@@ -25,5 +25,5 @@ type cases = [
 
 // ============= Your Code Here =============
 type Merge<F, S> = {
-  [P in keyof (F & S)]: P extends keyof S ? S[P] : (F & S)[P];
+  [P in keyof (F & S)]: P extends keyof (F | S) ? S[P] : (F & S)[P];
 };
