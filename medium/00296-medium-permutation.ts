@@ -32,6 +32,6 @@ type cases = [
 // ============= Your Code Here =============
 type Permutation<T, U = T> = [T] extends [never]
   ? []
-  : U extends infer U
+  : U extends infer _
   ? [U, ...Permutation<Exclude<T, U>>]
   : [];

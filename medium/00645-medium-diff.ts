@@ -23,6 +23,7 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-// type Diff<O, O1> = {
-//   [K in keyof (O & O1) as K extends keyof (O | O1) ? never : K]: (O & O1)[K];
-// };
+
+type Diff<O, O1> = {
+  [P in keyof (O & O1) as P extends keyof (O | O1) ? never : P]: (O & O1)[P];
+};
