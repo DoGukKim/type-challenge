@@ -16,6 +16,8 @@ type errors = [
 ];
 
 // ============= Your Code Here =============
-type First<T extends readonly unknown[]> = T extends [] ? never : T[0];
+// type First<T extends readonly unknown[]> = T extends [] ? never : T[0];
+type First<T extends readonly unknown[]> = T extends [infer F, ...infer _]
+  ? F
+  : never;
 // type First<T extends readonly unknown[]> = T['length'] extends 0 ? never : T[0];
-// type First<T extends readonly unknown[]> = T extends infer B  extends (string | number | symbol)[] ? B[0] : never

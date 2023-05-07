@@ -16,6 +16,6 @@ type cases = [
 // ============= Your Code Here =============
 type KebabCase<S extends string> = S extends `${infer F}${infer R}`
   ? R extends Uncapitalize<R>
-    ? `${Uncapitalize<F>}${KebabCase<R>}`
-    : `${Uncapitalize<F>}-${KebabCase<R>}`
+    ? `${Lowercase<F>}${KebabCase<R>}`
+    : `${Lowercase<F>}-${KebabCase<R>}`
   : S;
