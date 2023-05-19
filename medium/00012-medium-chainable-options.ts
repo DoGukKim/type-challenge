@@ -44,9 +44,8 @@ type Expected3 = {
 };
 
 // ============= Your Code Here =============
-//{ [P in K]: typeof value }도 된다.
-type Chainable<T extends Object = {}> = {
-  option: <K extends string, V>(
+type Chainable<T extends object = {}> = {
+  option: <K extends string | number | symbol, V>(
     key: K extends keyof T ? never : K,
     value: V
   ) => Chainable<Omit<T, K> & { [P in K]: V }>;
