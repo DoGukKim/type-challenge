@@ -11,7 +11,7 @@ type cases = [
 // ============= Your Code Here =============
 type LengthOfString<
   S extends string,
-  T extends string[] = []
+  A extends string[] = []
 > = S extends `${infer F}${infer R}`
-  ? LengthOfString<R, [...T, F]>
-  : T["length"];
+  ? LengthOfString<R, [...A, F]>
+  : A["length"];
