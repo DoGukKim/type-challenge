@@ -19,5 +19,5 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Empty = 0 | "" | false | undefined | null | { [P in string]: never } | [];
-type AnyOf<T extends any[]> = T[number] extends Empty ? false : true;
+type Falsy = 0 | "" | false | undefined | null | { [P in string]: never } | [];
+type AnyOf<T extends any[]> = T[number] extends Falsy ? false : true;
