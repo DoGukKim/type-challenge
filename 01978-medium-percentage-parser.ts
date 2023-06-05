@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "../test-utils";
+import type { Equal, Expect } from "./test-utils";
 
 type Case0 = ["", "", ""];
 type Case1 = ["+", "", ""];
@@ -30,21 +30,10 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type PlusOrMinus<S extends string> = S extends `${infer F}${infer _}`
-  ? F extends "+" | "-"
-    ? F
-    : ""
-  : "";
-type Num<S extends string> = S extends `${infer F}${infer R}`
-  ? "+" | "-" | "%" extends F
-    ? `${Num<R>}`
-    : `${F}${Num<R>}`
-  : S;
-type Percent<S extends string> = S extends `${infer _}${"%"}` ? "%" : "";
-type PercentageParser<S extends string> = S extends `${infer A}${infer R}`
-  ? [
-      `${PlusOrMinus<`${A}${R}`>}`,
-      `${Num<`${A}${R}`>}`,
-      `${Percent<`${A}${R}`>}`
-    ]
-  : ["", "", ""];
+type SplitOperator<T> = T extends "+" | "-" ? T : never;
+type SplitPercent<T> = T extends `${infer Num}%` ? [Num, "%"] : [T, ""];
+type PercentageParser<T extends string> = T extends `${SplitOperator<
+  infer Operator
+>}${infer R}`
+  ? [Operator, ...SplitPercent<R>]
+  : ["", ...SplitPercent<T>];
