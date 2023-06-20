@@ -27,3 +27,7 @@ interface Expected2 {
 type MyPick<T, K extends keyof T> = {
   [P in K]: T[P];
 };
+
+// type MyPick<T, K extends keyof T> = {
+//   [P in keyof T as P extends K ? P : never]: T[P];
+// };
