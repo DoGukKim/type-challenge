@@ -20,6 +20,6 @@ type ReplaceAll<
   To extends string
 > = From extends ""
   ? S
-  : S extends `${infer Pre}${From}${infer Post}`
-  ? `${Pre}${To}${ReplaceAll<Post, From, To>}`
+  : S extends `${infer Prev}${From}${infer R}`
+  ? `${Prev}${To}${ReplaceAll<R, From, To>}`
   : S;
