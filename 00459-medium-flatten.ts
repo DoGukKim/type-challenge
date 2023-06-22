@@ -26,6 +26,6 @@ type Flatten<T extends unknown[], A extends unknown[] = []> = T extends [
 
 // type Flatten<T> = T extends []
 //   ? []
-//   : T extends [infer First, ...infer Rest]
-//   ? [...Flatten<First>, ...Flatten<Rest>]
+//   : T extends [infer F, ...infer R]
+//   ? [...Flatten<F>, ...Flatten<R>]
 //   : [T];
