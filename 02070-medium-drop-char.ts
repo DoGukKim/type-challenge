@@ -16,6 +16,4 @@ type cases = [
 type DropChar<
   S extends string,
   C extends string
-> = S extends `${infer Pre}${C}${infer Rest}`
-  ? `${Pre}${DropChar<Rest, C>}`
-  : S;
+> = S extends `${infer P}${C}${infer R}` ? `${P}${DropChar<R, C>}` : S;

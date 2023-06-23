@@ -30,10 +30,31 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type SplitOperator<T> = T extends "+" | "-" ? T : never;
-type SplitPercent<T> = T extends `${infer Num}%` ? [Num, "%"] : [T, ""];
-type PercentageParser<T extends string> = T extends `${SplitOperator<
-  infer Operator
->}${infer R}`
-  ? [Operator, ...SplitPercent<R>]
-  : ["", ...SplitPercent<T>];
+type Operator = "+" | "-";
+type Percent = "%";
+
+type DropPercent<S extends string> = S extends `${infer N}${Percent}` ? N : S;
+type DropOperator<S extends string> = S extends `${Operator}${infer N}` ? N : S;
+
+type OperateParser<S extends string> = S extends `${infer O}${string}`
+  ? O extends Operator
+    ? O
+    : ""
+  : "";
+type PercentParser<S extends string> = S extends `${string}${Percent}`
+  ? Percent
+  : "";
+
+type PercentageParser<S extends string> = [
+  OperateParser<S>,
+  DropPercent<DropOperator<S>>,
+  PercentParser<S>
+];
+
+// type SplitOperator<T> = T extends "+" | "-" ? T : never;
+// type SplitPercent<T> = T extends `${infer Num}%` ? [Num, "%"] : [T, ""];
+// type PercentageParser<T extends string> = T extends `${SplitOperator<
+//   infer Operator
+// >}${infer R}`
+//   ? [Operator, ...SplitPercent<R>]
+//   : ["", ...SplitPercent<T>];
