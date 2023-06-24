@@ -10,6 +10,12 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
+type CheckRepeatedChars<S extends string> = S extends `${infer F}${infer R}`
+  ? R extends `${string}${F}${string}`
+    ? true
+    : CheckRepeatedChars<R>
+  : false;
+
 // type Include<T, U> = T extends [infer F, ...infer R]
 //   ? Equal<F, U> extends true
 //     ? true
@@ -24,9 +30,3 @@ type cases = [
 //     ? true
 //     : CheckRepeatedChars<R, [...A, F]>
 //   : false;
-
-type CheckRepeatedChars<S extends string> = S extends `${infer F}${infer R}`
-  ? R extends `${string}${F}${string}`
-    ? true
-    : CheckRepeatedChars<R>
-  : false;
