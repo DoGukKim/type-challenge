@@ -64,6 +64,6 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type ReplaceKeys<T, U, R> = {
-  [P in keyof T]: P extends U ? (P extends keyof R ? R[P] : never) : T[P];
+type ReplaceKeys<T, U, K> = {
+  [P in keyof T]: P extends U ? (P extends keyof K ? K[P] : never) : T[P];
 };

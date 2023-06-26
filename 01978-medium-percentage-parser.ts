@@ -33,8 +33,8 @@ type cases = [
 type Operator = "+" | "-";
 type Percent = "%";
 
-type DropPercent<S extends string> = S extends `${infer N}${Percent}` ? N : S;
 type DropOperator<S extends string> = S extends `${Operator}${infer N}` ? N : S;
+type DropPercent<S extends string> = S extends `${infer N}${Percent}` ? N : S;
 
 type OperateParser<S extends string> = S extends `${infer O}${string}`
   ? O extends Operator

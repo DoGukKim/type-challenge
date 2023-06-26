@@ -59,5 +59,5 @@ type Expected2 = { readonly a: string } | { readonly b: number };
 type DeepReadonly<T> = T extends (...arg: any) => any
   ? T
   : {
-      readonly [P in keyof T]: T[P] extends Object ? DeepReadonly<T[P]> : T[P];
+      readonly [P in keyof T]: T[P] extends object ? DeepReadonly<T[P]> : T[P];
     };
