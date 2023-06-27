@@ -12,6 +12,6 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type StartsWith<T extends string, U extends string> = T extends `${U}${infer _}`
+type StartsWith<T extends string, U extends string> = T extends `${U}${string}`
   ? true
   : false;

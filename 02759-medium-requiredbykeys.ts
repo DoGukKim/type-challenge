@@ -28,10 +28,10 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Flatten<T> = {
+type Merge<T> = {
   [P in keyof T]: T[P];
 };
 
-type RequiredByKeys<T, K extends keyof T = keyof T> = Flatten<
+type RequiredByKeys<T, K extends keyof T = keyof T> = Merge<
   Omit<T, K> & { [P in K]-?: T[P] }
 >;

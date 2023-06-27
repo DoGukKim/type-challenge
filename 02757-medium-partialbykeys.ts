@@ -32,5 +32,12 @@ type Merge<T> = {
   [P in keyof T]: T[P];
 };
 type PartialByKeys<T, K extends keyof T = keyof T> = Merge<
-  { [P in keyof T as P extends K ? never : P]: T[P] } & { [P in K]?: T[P] }
+  Omit<T, K> & { [P in K]?: T[P] }
 >;
+
+// type Merge<T> = {
+//   [P in keyof T]: T[P];
+// };
+// type PartialByKeys<T, K extends keyof T = keyof T> = Merge<
+//   { [P in keyof T as P extends K ? never : P]: T[P] } & { [P in K]?: T[P] }
+// >;

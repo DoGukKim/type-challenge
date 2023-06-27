@@ -20,7 +20,6 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-
 type ObjectEntries<T> = {
   [K in keyof T]-?: [
     K,
