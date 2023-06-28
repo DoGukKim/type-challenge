@@ -14,8 +14,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type TupleToNestedObject<T, U> = T extends [infer F, ...infer R]
+type TupleToNestedObject<T, U> = T extends [infer F extends string, ...infer R]
   ? {
-      [K in F & string]: TupleToNestedObject<R, U>;
+      [P in F]: TupleToNestedObject<R, U>;
     }
   : U;

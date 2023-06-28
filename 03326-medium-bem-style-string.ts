@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect, IsAny } from "./test-utils";
 
 type cases = [
   Expect<Equal<BEM<"btn", ["price"], []>, "btn__price">>,
@@ -18,13 +18,12 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-
-type HandleNever<T> = [T] extends [never] ? "" : T;
+type isNever<T> = [T] extends [never] ? "" : T;
 type BEM<
   B extends string,
   E extends string[],
   M extends string[]
-> = `${B}${HandleNever<`__${E[number]}`>}${HandleNever<`--${M[number]}`>}`;
+> = `${B}${isNever<`__${E[number]}`>}${isNever<`--${M[number]}`>}`;
 
 // type BEM<
 //   B extends string,
@@ -33,14 +32,3 @@ type BEM<
 // > = `${B}${E extends [] ? "" : `__${E[number]}`}${M extends []
 //   ? ""
 //   : `--${M[number]}`}`;
-
-// type BEMString<T extends string, Type> = [T] extends [undefined]
-//   ? ""
-//   : `${Type & string}${T}`;
-
-// type BEM<B, E extends string[], M extends string[]> = {
-//   [key in number]: `${B & string}${BEMString<E[key], "__">}${BEMString<
-//     M[number],
-//     "--"
-//   >}`;
-// }[number];
