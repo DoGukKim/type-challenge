@@ -18,3 +18,11 @@ type errors = [
 type Reverse<T extends unknown[]> = T extends [infer F, ...infer R]
   ? [...Reverse<R>, F]
   : [];
+
+// other solution
+// type Reverse<T extends unknown[], A extends unknown[] = []> = T extends [
+//   ...infer P,
+//   infer L
+// ]
+//   ? Reverse<P, [...A, L]>
+//   : A;
