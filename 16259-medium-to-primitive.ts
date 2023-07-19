@@ -30,7 +30,6 @@ type ExpectedResult = {
 type cases = [Expect<Equal<ToPrimitive<PersonInfo>, ExpectedResult>>];
 
 // ============= Your Code Here =============
-
 // my solution
 type Primitives = [string, number, bigint, boolean, symbol, null, undefined];
 type GetPrimitive<T, P = Primitives> = P extends [infer F, ...infer R]
