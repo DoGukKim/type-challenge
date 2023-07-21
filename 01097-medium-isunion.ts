@@ -23,6 +23,6 @@ type IsUnion<T, B = T> = [T] extends [never]
   ? false
   : T extends B
   ? [B] extends [T]
-    ? false
-    : true
+    ? false // 같게되면 유니언이 아니게 되므로 false를 반환.
+    : true // 예를 들어, [string | number] extends [string]은 false로 true를 반환해서 유니언임을 판단.
   : false;
