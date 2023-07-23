@@ -20,10 +20,13 @@ type Fill<
   T extends unknown[],
   N,
   Start extends number = 0,
-  End extends number = T["length"]
-> = T["length"] extends Start ? [] : T;
-
-// start와 end가 같으면 그냥 T 반환?
-// range를 만들까 했는데 그것도 어렵네.. 왜냐하면 end가 작아버리면 range 만들기가 어려움.
-// end는 배열의 길이 보다 커도 상관 없음.
-// start는 배열의 크기보다 작아야 한다.
+  End extends number = T["length"],
+  Count extends unknown[] = [],
+  Flag extends boolean = Count["length"] extends Start ? true : false
+> = Count["length"] extends End
+  ? T
+  : T extends [infer R, ...infer U]
+  ? Flag extends false
+    ? [R, ...Fill<U, N, Start, End, [...Count, 0]>]
+    : [N, ...Fill<U, N, Start, End, [...Count, 0], Flag>]
+  : T;
