@@ -31,13 +31,7 @@ type cases = [
 type FlatObject<T> = {
   [P in keyof T]: T[P];
 };
+
 type PartialByKeys<T, K extends keyof T = keyof T> = FlatObject<
   Omit<T, K> & { [P in K]?: T[P] }
 >;
-
-// type FlatObject<T> = {
-//   [P in keyof T]: T[P];
-// };
-// type PartialByKeys<T, K extends keyof T = keyof T> = FlatObject<
-//   { [P in keyof T as P extends K ? never : P]: T[P] } & { [P in K]?: T[P] }
-// >;
