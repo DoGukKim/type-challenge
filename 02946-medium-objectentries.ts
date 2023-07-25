@@ -20,16 +20,13 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type ObjectEntries<T> = {
-  [K in keyof T]-?: [
-    K,
-    T[K] extends undefined ? T[K] : Exclude<T[K], undefined>
-  ];
-}[keyof T];
+type ObjectEntries<T, K extends keyof T = keyof T> = K extends keyof T
+  ? [K, T[K] extends undefined ? T[K] : Exclude<T[K], undefined>]
+  : never;
 
-// my solution
-// type ObjectEntries<T, K = { [P in keyof T]-?: T[P] }> = keyof K extends infer U
-//   ? U extends U
-//     ? [U, K[U & keyof K] extends never ? undefined : K[U & keyof K]]
-//     : never
-//   : never;
+// type ObjectEntries<T> = {
+//   [K in keyof T]-?: [
+//     K,
+//     T[K] extends undefined ? T[K] : Exclude<T[K], undefined>
+//   ];
+// }[keyof T];
