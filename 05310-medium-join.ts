@@ -9,20 +9,17 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Join<
-  T extends unknown[],
-  U extends string | number
-> = T["length"] extends 1
-  ? `${T[0] & string}`
-  : T extends [infer F extends string, ...infer R]
-  ? `${F}${U}${Join<R, U>}`
-  : "";
+type Join<T extends unknown[], U extends string | number> = T extends [
+  infer F extends string,
+  ...infer R
+]
+  ? R extends []
+    ? `${F}`
+    : `${F}${U}${Join<R, U>}`
+  : never;
 
-// type Join<T extends unknown[], U extends string | number> = T extends [
-//   infer F extends string,
-//   ...infer R
-// ]
-//   ? R["length"] extends 0
-//     ? `${F}`
-//     : `${F}${U}${Join<R, U>}`
-//   : never;
+// type Join<T extends string[], U extends string | number> = T["length"] extends 1
+//   ? `${T[0]}`
+//   : T extends [infer F extends string, ...infer R extends string[]]
+//   ? `${F}${U}${Join<R, U>}`
+//   : "";
