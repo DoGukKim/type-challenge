@@ -15,3 +15,19 @@ type LastIndexOf<T extends unknown[], U> = T extends [...infer P, infer L]
     ? [...P]["length"]
     : LastIndexOf<P, U>
   : -1;
+
+// type ToArrayOfLength<T, A extends unknown[] = []> = A["length"] extends T
+//   ? A
+//   : ToArrayOfLength<T, [...A, 1]>;
+
+// type Pop<T extends unknown[]> = T extends [...infer R, infer L] ? R : never;
+
+// type LastIndexOf<
+//   T extends unknown[],
+//   U,
+//   A extends unknown[] = ToArrayOfLength<T["length"]>
+// > = T extends [...infer R, infer L]
+//   ? Equal<L, U> extends true
+//     ? Pop<A>["length"]
+//     : LastIndexOf<R, U, Pop<A>>
+//   : -1;
