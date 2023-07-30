@@ -10,17 +10,26 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type IsUnique<T, F> = T extends true ? (F extends true ? true : false) : false;
-type IsPrevRepeat<P extends string[], T> = T extends P[number] ? false : true;
-type IsRestRepeat<R, T extends string> = R extends `${string}${T}${string}`
-  ? false
-  : true;
+type IsUnique<B1, B2> = B1 extends false
+  ? B2 extends false
+    ? true
+    : false
+  : false;
+
+type IsPrevRepeat<T extends string, P extends string[]> = T extends P[number]
+  ? true
+  : false;
+
+type IsRestRepeat<
+  T extends string,
+  R extends string
+> = R extends `${string}${T}${string}` ? true : false;
 
 type FirstUniqueCharIndex<
   T extends string,
   P extends string[] = []
 > = T extends `${infer F}${infer R}`
-  ? IsUnique<IsPrevRepeat<P, F>, IsRestRepeat<R, F>> extends true
+  ? IsUnique<IsPrevRepeat<F, P>, IsRestRepeat<F, R>> extends true
     ? P["length"]
     : FirstUniqueCharIndex<R, [...P, F]>
   : -1;
