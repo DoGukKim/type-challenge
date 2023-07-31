@@ -76,7 +76,7 @@ type errors = [
 ];
 
 // ============= Your Code Here =============
-type DeepMutable<T extends object> = T extends (...args: any) => any
+type DeepMutable<T extends object> = T extends (...args: unknown[]) => any
   ? T
   : {
       -readonly [P in keyof T]: T[P] extends object ? DeepMutable<T[P]> : T[P];

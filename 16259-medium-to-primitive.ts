@@ -30,23 +30,18 @@ type ExpectedResult = {
 type cases = [Expect<Equal<ToPrimitive<PersonInfo>, ExpectedResult>>];
 
 // ============= Your Code Here =============
-// my solution
 type Primitives = [string, number, bigint, boolean, symbol, null, undefined];
+
 type GetPrimitive<T, P = Primitives> = P extends [infer F, ...infer R]
   ? T extends F
     ? F
     : GetPrimitive<T, R>
   : never;
-type ToPrimitive<T> = T extends object
-  ? T extends (...arg: unknown[]) => unknown
-    ? Function
-    : { [P in keyof T]: ToPrimitive<T[P]> }
-  : GetPrimitive<T>;
 
-// type ToPrimitive<T> = T extends object ? (
-//   T extends (...args: never[]) => unknown ? Function : {
-//     [Key in keyof T]: ToPrimitive<T[Key]>
-//   }
-// ) : (
-//   T extends { valueOf: () => infer P } ? P : T
-// )
+type ToPrimitive<T> = T extends (...arg: unknown[]) => any
+  ? Function
+  : {
+      [P in keyof T]: T[P] extends object
+        ? ToPrimitive<T[P]>
+        : GetPrimitive<T[P]>;
+    };

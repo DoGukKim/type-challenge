@@ -21,18 +21,8 @@ type cases = [
 type error = GetMiddleElement<1, 2, 3>;
 
 // ============= Your Code Here =============
-type GetMiddleElement<T extends unknown[]> = T["length"] extends 0 | 1 | 2
+type GetMiddleElement<T extends unknown[]> = T["length"] extends 1 | 2
   ? T
   : T extends [infer _, ...infer R, infer _]
   ? GetMiddleElement<R>
-  : never;
-
-// type CheckEnd<T extends unknown[]> = T["length"] extends 1 | 2 ? true : false;
-
-// type GetMiddleElement<T extends unknown[]> = CheckEnd<T> extends true
-//   ? [...T]
-//   : T extends [infer _, ...infer R, infer _]
-//   ? CheckEnd<R> extends true
-//     ? [...R]
-//     : GetMiddleElement<R>
-//   : [];
+  : [];
