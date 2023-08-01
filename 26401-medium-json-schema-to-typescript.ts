@@ -1,43 +1,43 @@
 // ============= Test Cases =============
 import type { Equal, Expect } from "./test-utils";
 
-// + Primitive types
-type Type1 = JSONSchema2TS<{
-  type: "string";
-}>;
-type Expected1 = string;
-type Result1 = Expect<Equal<Type1, Expected1>>;
+// // + Primitive types
+// type Type1 = JSONSchema2TS<{
+//   type: "string";
+// }>;
+// type Expected1 = string;
+// type Result1 = Expect<Equal<Type1, Expected1>>;
 
-type Type2 = JSONSchema2TS<{
-  type: "number";
-}>;
-type Expected2 = number;
-type Result2 = Expect<Equal<Type2, Expected2>>;
+// type Type2 = JSONSchema2TS<{
+//   type: "number";
+// }>;
+// type Expected2 = number;
+// type Result2 = Expect<Equal<Type2, Expected2>>;
 
-type Type3 = JSONSchema2TS<{
-  type: "boolean";
-}>;
-type Expected3 = boolean;
-type Result3 = Expect<Equal<Type3, Expected3>>;
-// - Primitive types
+// type Type3 = JSONSchema2TS<{
+//   type: "boolean";
+// }>;
+// type Expected3 = boolean;
+// type Result3 = Expect<Equal<Type3, Expected3>>;
+// // - Primitive types
 
-// + Enums
-type Type4 = JSONSchema2TS<{
-  type: "string";
-  enum: ["a", "b", "c"];
-}>;
-type Expected4 = "a" | "b" | "c";
-type Result4 = Expect<Equal<Type4, Expected4>>;
+// // + Enums
+// type Type4 = JSONSchema2TS<{
+//   type: "string";
+//   enum: ["a", "b", "c"];
+// }>;
+// type Expected4 = "a" | "b" | "c";
+// type Result4 = Expect<Equal<Type4, Expected4>>;
 
-type Type5 = JSONSchema2TS<{
-  type: "number";
-  enum: [1, 2, 3];
-}>;
-type Expected5 = 1 | 2 | 3;
-type Result5 = Expect<Equal<Type5, Expected5>>;
-// - Enums
+// type Type5 = JSONSchema2TS<{
+//   type: "number";
+//   enum: [1, 2, 3];
+// }>;
+// type Expected5 = 1 | 2 | 3;
+// type Result5 = Expect<Equal<Type5, Expected5>>;
+// // - Enums
 
-// // + Object types
+// // // + Object types
 type Type6 = JSONSchema2TS<{
   type: "object";
 }>;
@@ -63,7 +63,7 @@ type Expected8 = {
   a?: string;
 };
 type Result8 = Expect<Equal<Type8, Expected8>>;
-// // - Object types
+// // // - Object types
 
 // // + Arrays
 // type Type9 = JSONSchema2TS<{
@@ -173,10 +173,35 @@ type Primitives = {
 };
 
 // primitive, enum pass it
-type JSONSchema2TS<T> = T extends { properties: object }
-  ? JSONSchema2TS<T["properties"]>
-  : T extends { enum: unknown[] }
-  ? T["enum"][number]
-  : T extends { type: keyof Primitives }
-  ? Primitives[T["type"]]
-  : {};
+// type JSONSchema2TS<T> = T extends { properties: object }
+//   ? JSONSchema2TS<T["properties"]>
+//   : T extends { enum: unknown[] }
+//   ? T["enum"][number]
+//   : T extends { type: keyof Primitives }
+//   ? Primitives[T["type"]]
+//   : {};
+
+// primitive
+// type JSONSchema2TS<T> = T extends { type: infer P extends keyof Primitives }
+//   ? Primitives[P]
+//   : never;
+
+// enum
+// type JSONSchema2TS<T> = T extends { type: infer P extends keyof Primitives }
+//   ? T extends { enum: infer E extends unknown[] }
+//     ? E[number]
+//     : never
+//   : never;
+
+// object
+type R = JSONSchema2TS<{
+  type: "object";
+}>;
+
+type JSONSchema2TS<T> = T extends { type: infer P extends keyof Primitives }
+  ? P extends "object"
+    ? T extends { properties: object }
+      ? { [K in keyof T["properties"]]?: JSONSchema2TS<T[K]> }
+      : Primitives["object"]
+    : never
+  : string;

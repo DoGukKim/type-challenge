@@ -23,7 +23,7 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type ReplaceFirst<T extends readonly unknown[], From, To> = T extends [
+type ReplaceFirst<T extends unknown[], From, To> = T extends [
   infer F,
   ...infer R
 ]
