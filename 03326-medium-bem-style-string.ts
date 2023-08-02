@@ -18,17 +18,14 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type isNever<T> = [T] extends [never] ? "" : T;
+type isNever<T> = [T] extends [never] ? true : false;
+
 type BEM<
   B extends string,
   E extends string[],
   M extends string[]
-> = `${B}${isNever<`__${E[number]}`>}${isNever<`--${M[number]}`>}`;
-
-// type BEM<
-//   B extends string,
-//   E extends string[],
-//   M extends string[]
-// > = `${B}${E extends [] ? "" : `__${E[number]}`}${M extends []
-//   ? ""
-//   : `--${M[number]}`}`;
+> = `${B}${isNever<E[number]> extends true ? "" : `__${E[number]}`}${isNever<
+  M[number]
+> extends true
+  ? ""
+  : `--${M[number]}`}`;
