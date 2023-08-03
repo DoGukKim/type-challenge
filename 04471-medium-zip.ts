@@ -19,3 +19,14 @@ type Zip<
     ? Zip<TR, UR, [...A, [TF, UF]]>
     : A
   : A;
+
+// type Zip<
+//   T extends unknown[],
+//   U extends unknown[],
+//   I extends unknown[] = [],
+//   A extends unknown[] = []
+// > = T extends [infer F, ...infer R]
+//   ? U[I["length"]] extends undefined
+//     ? A
+//     : Zip<R, U, [...I, 0], [...A, [F, U[I["length"]]]]>
+//   : A;
