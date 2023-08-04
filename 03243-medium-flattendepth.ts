@@ -21,7 +21,7 @@ type FlattenDepth<
 > = T extends [infer F, ...infer R]
   ? F extends unknown[]
     ? C["length"] extends N
-      ? [F, ...FlattenDepth<R, N, C>]
-      : [...FlattenDepth<F, N, [...C, 1]>, ...FlattenDepth<R, N, C>]
+      ? [F, ...FlattenDepth<R, N, []>]
+      : [...FlattenDepth<F, N, [...C, 1]>, ...FlattenDepth<R, N, []>]
     : [F, ...FlattenDepth<R, N, C>]
   : [];
