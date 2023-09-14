@@ -20,7 +20,7 @@ type error = MyAwaited<number>;
 
 // ============= Your Code Here =============
 type MyAwaited<T extends PromiseLike<any>> = T extends PromiseLike<infer P>
-  ? P extends Promise<unknown>
+  ? P extends Promise<any>
     ? MyAwaited<P>
     : P
   : never;
