@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 type cases = [
   Expect<Equal<First<[3, 2, 1]>, 3>>,
@@ -16,5 +16,8 @@ type errors = [
 ];
 
 // ============= Your Code Here =============
-// type First<T extends unknown[]> = T extends [infer F, ...infer _] ? F : never;
-type First<T extends unknown[]> = T extends [] ? never : T[0];
+type First<T extends readonly unknown[]> = T extends [] ? never : T[0];
+// type First<T extends readonly unknown[]> = T extends [infer F, ...infer _]
+//   ? F
+//   : never;
+// type First<T extends readonly unknown[]> = T['length'] extends 0 ? never : T[0];

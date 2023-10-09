@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 const foo = (arg1: string, arg2: number): void => {};
 const bar = (arg1: boolean, arg2: { a: "A" }): void => {};
@@ -12,8 +12,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type MyParameters<T extends (...param: any[]) => any> = T extends (
-  ...param: infer P
-) => any
+type MyParameters<T extends (...args: any[]) => unknown> = T extends (
+  ...args: infer P
+) => unknown
   ? P
   : never;

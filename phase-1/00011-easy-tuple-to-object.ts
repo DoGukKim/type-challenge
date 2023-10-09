@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 const tuple = ["tesla", "model 3", "model X", "model Y"] as const;
 const tupleNumber = [1, 2, 3, 4] as const;
@@ -28,5 +28,5 @@ type error = TupleToObject<[[1, 2], {}]>;
 
 // ============= Your Code Here =============
 type TupleToObject<T extends readonly (string | number | symbol)[]> = {
-  [P in T[number]]: P;
+  [V in T[number]]: V;
 };

@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 type cases = [
   Expect<Equal<Push<[], 1>, [1]>>,
@@ -8,4 +8,4 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Push<T extends unknown[], U> = [...T, U];
+type Push<T extends unknown[], V> = [...T, V];

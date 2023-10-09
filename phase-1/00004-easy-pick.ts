@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 type cases = [
   Expect<Equal<Expected1, MyPick<Todo, "title">>>,
@@ -27,3 +27,7 @@ interface Expected2 {
 type MyPick<T, K extends keyof T> = {
   [P in K]: T[P];
 };
+
+// type MyPick<T, K extends keyof T> = {
+//   [P in keyof T as P extends K ? P : never]: T[P];
+// };

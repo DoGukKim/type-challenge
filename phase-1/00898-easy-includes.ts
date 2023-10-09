@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 type cases = [
   Expect<
@@ -25,8 +25,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Includes<T extends readonly any[], U> = T extends [infer F, ...infer R]
-  ? Equal<F, U> extends true
+type Includes<T extends unknown[], V> = T extends [infer F, ...infer R]
+  ? Equal<F, V> extends true
     ? true
-    : Includes<R, U>
+    : Includes<R, V>
   : false;
