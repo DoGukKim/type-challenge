@@ -2,22 +2,22 @@
 <img src='./logo.svg' width='400'/>
 </p>
 
-<p align='center' font-weight='600'>
-타입스크립트 타입 챌린지 모음
+## 소개
+
+- 타입 챌린지 풀이 저장소 🏭
+- 어려운 타입 구현 역량 키우기 도전 🔥
+- 모든 문제 풀이 해설지 공유 ⭐ [해설지 노션](https://uebermensch.notion.site/3a3b2d05c0ad42ba88c69cee05abdf12)
+
+## 난이도 구분
+
+- [warm-up](warm-up)
+- [easy](easy)
+- [medium](medium)
+- [hard](hard)
+
+<br />
+타입 챌린지에 도전하는 개발자분들 화이팅입니다!👍🏻🏋️
+<p></p>
+<p align='center'>
+<img src='./nopain-nogain.jpg' style="width:400px; border-radius:5px" />
 </p>
-
-<br>
-<br>
-
-## Intro
-
-이 저장소에는 `타입 챌린지`를 풀이한 코드들이 저장되어 있습니다.  
-현직에서 타입 작성으로 인해 자주 발생하는 작업 지연을 최소화하고,  
-어려운 타입 구현도 타이핑 할 수 있는 역량을 목표로 하고 있습니다.  
-모든 문제 풀이 해석을 꾸준히 기록하고, 부족한 점을 파악해 보완하려 노력하고 있습니다.👍🏻
-
-<br>
-
-## Description
-
-챌린지는 난이도 별로 도전 중이며 `쉬움`, `중간`, `어려움`으로 구분해 풀이하고 있습니다.
