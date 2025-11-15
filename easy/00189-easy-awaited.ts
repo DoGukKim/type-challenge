@@ -17,7 +17,7 @@ type cases = [
 
 // ============= Your Code Here =============
 type MyAwaited<T extends PromiseLike<any>> = T extends PromiseLike<infer V>
-  ? V extends Promise<unknown>
+  ? V extends PromiseLike<any>
     ? MyAwaited<V>
     : V
   : never;
