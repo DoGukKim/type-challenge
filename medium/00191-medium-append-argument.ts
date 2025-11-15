@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 type Case1 = AppendArgument<(a: number, b: string) => number, boolean>;
 type Result1 = (a: number, b: string, x: boolean) => number;

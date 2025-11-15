@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 let x = 1;
 let y = 1 as const;

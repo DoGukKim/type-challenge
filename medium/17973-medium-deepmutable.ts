@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 interface Test1 {
   readonly title: string;

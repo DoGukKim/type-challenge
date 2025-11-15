@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 // case1
 type Case1Target = {};

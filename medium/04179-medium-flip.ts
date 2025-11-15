@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect, NotEqual } from "./test-utils";
+import type { Equal, Expect, NotEqual } from "../test-utils";
 
 type cases = [
   Expect<Equal<{ a: "pi" }, Flip<{ pi: "a" }>>>,

@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Alike, Expect } from "./test-utils";
+import type { Alike, Expect } from "../test-utils";
 
 declare const a: Chainable;
 

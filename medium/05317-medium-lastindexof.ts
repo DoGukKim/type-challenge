@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "../test-utils";
 
 type cases = [
   Expect<Equal<LastIndexOf<[1, 2, 3, 2, 1], 2>, 3>>,
