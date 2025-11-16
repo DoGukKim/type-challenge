@@ -20,4 +20,7 @@ type cases = [
 type error = Concat<null, undefined>;
 
 // ============= Your Code Here =============
-type Concat<T extends readonly any[], U extends readonly any[]> = [...T, ...U];
+type Concat<T1 extends readonly any[], T2 extends readonly any[]> = [
+  ...T1,
+  ...T2
+];
