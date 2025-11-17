@@ -57,11 +57,18 @@ type Expected1 = {
 type Expected2 = { readonly a: string } | { readonly b: number };
 
 // ============= Your Code Here =============
-type DeepReadonly<T> = {
-  readonly [P in keyof T]: T[P] extends (...params: any[]) => any
-    ? T[P]
-    : DeepReadonly<T[P]>;
-};
+type DeepReadonly<T> = T extends object
+  ? T extends (...params: any[]) => any
+    ? T
+    : { readonly [P in keyof T]: DeepReadonly<T[P]> }
+  : T;
+
+// 다른 방법
+// type DeepReadonly<T> = {
+//   readonly [P in keyof T]: T[P] extends (...params: any[]) => any
+//     ? T[P]
+//     : DeepReadonly<T[P]>;
+// };
 
 // 다른 방법
 // type DeepReadonly<T> = T extends (...params: any[]) => any
