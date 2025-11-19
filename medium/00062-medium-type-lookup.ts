@@ -20,7 +20,4 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type LookUp<
-  T extends { type: Animal["type"] },
-  U extends T["type"]
-> = T extends { type: U } ? T : never;
+type LookUp<U, T> = U extends { type: T } ? U : never;

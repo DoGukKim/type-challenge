@@ -20,8 +20,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-declare function PromiseAll<T extends unknown[] | []>(
+declare function PromiseAll<T extends readonly any[] | []>(
   values: T
 ): Promise<{
-  [K in keyof T]: Awaited<T[K]>;
+  [P in keyof T]: Awaited<T[P]>;
 }>;
