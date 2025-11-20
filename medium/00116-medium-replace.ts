@@ -17,6 +17,6 @@ type Replace<
   To extends string
 > = From extends ""
   ? S
-  : S extends `${infer FR}${From}${infer AR}`
-  ? `${FR}${To}${AR}`
+  : S extends `${infer Pre}${From}${infer Post}`
+  ? `${Pre}${To}${Post}`
   : S;
