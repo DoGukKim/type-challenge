@@ -15,8 +15,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type AppendArgument<Fn extends (...arg: any[]) => any, A> = Fn extends (
-  ...arg: infer Param
-) => infer R
-  ? (...arg: [...Param, A]) => R
+type AppendArgument<Fn extends (...params: any[]) => any, A> = Fn extends (
+  ...params: infer Parmas
+) => infer Return
+  ? (...params: [...Parmas, A]) => Return
   : never;
