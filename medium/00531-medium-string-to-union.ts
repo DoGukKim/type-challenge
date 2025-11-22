@@ -14,7 +14,13 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type StringToUnion<
-  T extends string,
-  A extends string[] = []
-> = T extends `${infer C}${infer R}` ? StringToUnion<R, [...A, C]> : A[number];
+type StringToUnion<T extends string> = T extends `${infer First}${infer Rest}`
+  ? First | StringToUnion<Rest>
+  : never;
+
+// type StringToUnion<
+//   T extends string,
+//   Result extends string[] = []
+// > = T extends `${infer First}${infer Rest}`
+//   ? StringToUnion<Rest, [...Result, First]>
+//   : Result[number];
