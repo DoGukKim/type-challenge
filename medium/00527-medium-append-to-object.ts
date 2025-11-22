@@ -48,3 +48,9 @@ type cases = [
 type AppendToObject<T, U extends PropertyKey, V> = {
   [P in keyof T | U]: P extends keyof T ? T[P] : V;
 };
+
+// 다른 방법
+// type FlatObject<T> = { [P in keyof T]: T[P] };
+// type AppendToObject<T, U extends PropertyKey, V> = FlatObject<
+//   Omit<T, U> & { [P in U]: V }
+// >;
