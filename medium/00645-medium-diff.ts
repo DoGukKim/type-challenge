@@ -1,29 +1,34 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from '../test-utils'
+import type { Equal, Expect } from "../test-utils";
 
 type Foo = {
-  name: string
-  age: string
-}
+  name: string;
+  age: string;
+};
 type Bar = {
-  name: string
-  age: string
-  gender: number
-}
+  name: string;
+  age: string;
+  gender: number;
+};
 type Coo = {
-  name: string
-  gender: number
-}
+  name: string;
+  gender: number;
+};
 
 type cases = [
   Expect<Equal<Diff<Foo, Bar>, { gender: number }>>,
   Expect<Equal<Diff<Bar, Foo>, { gender: number }>>,
-  Expect<Equal<Diff<Foo, Coo>, { age: string, gender: number }>>,
-  Expect<Equal<Diff<Coo, Foo>, { age: string, gender: number }>>,
-]
-
+  Expect<Equal<Diff<Foo, Coo>, { age: string; gender: number }>>,
+  Expect<Equal<Diff<Coo, Foo>, { age: string; gender: number }>>
+];
 
 // ============= Your Code Here =============
 type Diff<O, O1> = {
-  [P in keyof (O & O1) as P extends keyof (O | O1) ? never : P]: (O & O1)[P]
-}
+  [P in keyof (O & O1) as P extends keyof (O | O1) ? never : P]: (O & O1)[P];
+};
+
+// 방법2
+// type FlatObject<T> = {
+//   [P in keyof T]: T[P];
+// };
+// type Diff<O, O1> = FlatObject<Omit<O, keyof O1> & Omit<O1, keyof O>>;

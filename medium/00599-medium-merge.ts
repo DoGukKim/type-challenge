@@ -24,6 +24,16 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
+type Merge<F, S> = {
+  [P in keyof (F & S)]: P extends keyof (F | S) ? S[P] : (F & S)[P];
+};
+
+// 방법2
+// type Merge<F, S> = {
+//   [P in keyof (F & S)]: P extends keyof S ? S[P] : (F & S)[P];
+// };
+
+// 방법3
 // type Merge<F, S> = {
 //   [P in keyof (F & S)]: P extends keyof S
 //     ? S[P]
@@ -31,8 +41,3 @@ type cases = [
 //     ? F[P]
 //     : never;
 // };
-
-// Better
-type Merge<F, S> = {
-  [P in keyof (F & S)]: P extends keyof (F | S) ? S[P] : (F & S)[P];
-};
