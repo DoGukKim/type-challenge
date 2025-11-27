@@ -13,8 +13,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type DropChar<S, C extends string> = S extends `${infer Current}${infer R}`
-  ? Current extends C
-    ? `${DropChar<R, C>}`
-    : `${Current}${DropChar<R, C>}`
+type DropChar<S, C> = S extends `${infer First}${infer Rest}`
+  ? First extends C
+    ? `${DropChar<Rest, C>}`
+    : `${First}${DropChar<Rest, C>}`
   : S;
