@@ -26,6 +26,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type ObjectEntries<T, U extends keyof T = keyof T> = U extends keyof T
-  ? [U, Required<T>[U] extends never ? undefined : Required<T>[U]]
-  : never;
+type ObjectEntries<
+  T,
+  R = Required<T>,
+  U extends keyof R = keyof R
+> = U extends keyof R ? [U, R[U] extends never ? undefined : R[U]] : never;
