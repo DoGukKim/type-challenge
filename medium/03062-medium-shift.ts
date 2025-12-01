@@ -12,3 +12,6 @@ type cases = [
 
 // ============= Your Code Here =============
 type Shift<T extends any[]> = T extends [infer _, ...infer R] ? R : [];
+
+// 다른 방법
+// type Shift<T extends any[]> = T extends [any, ...infer R] ? R : [];

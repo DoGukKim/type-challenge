@@ -14,11 +14,9 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type TupleToNestedObject<T extends string[], U> = T extends [
-  infer C extends string,
-  ...infer R extends string[]
+type TupleToNestedObject<T, U> = T extends [
+  infer F extends PropertyKey,
+  ...infer R
 ]
-  ? {
-      [P in C]: TupleToNestedObject<R, U>;
-    }
+  ? { [P in F]: TupleToNestedObject<R, U> }
   : U;
