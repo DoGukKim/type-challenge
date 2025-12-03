@@ -14,15 +14,10 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type NestedArray = (number | NestedArray)[];
-type FlattenDepth<
-  T extends NestedArray,
-  S extends number = 1,
-  U extends NestedArray = []
-> = U["length"] extends S
+type FlattenDepth<T, D = 1, A extends number[] = []> = A["length"] extends D
   ? T
-  : T extends [infer F, ...infer R extends NestedArray]
-  ? F extends NestedArray
-    ? [...FlattenDepth<F, S, [...U, 1]>, ...FlattenDepth<R, S, U>]
-    : [F, ...FlattenDepth<R, S, U>]
+  : T extends [infer F, ...infer R]
+  ? F extends any[]
+    ? [...FlattenDepth<F, D, [...A, 0]>, ...FlattenDepth<R, D, A>]
+    : [F, ...FlattenDepth<R, D, A>]
   : T;
