@@ -14,7 +14,5 @@ type cases = [
 type Flip<T> = {
   [P in keyof T as T[P] extends PropertyKey
     ? T[P]
-    : T[P] extends boolean | null | undefined | bigint
-    ? `${T[P]}`
-    : never]: P;
+    : `${T[P] & (string | number | boolean)}`]: P;
 };
