@@ -12,27 +12,14 @@ type cases = [
 
 // ============= Your Code Here =============
 type Chunk<
-  T extends readonly any[],
-  N extends number,
-  A extends any[] = []
+  T,
+  N,
+  S extends unknown[] = [],
+  A extends unknown[] = []
 > = T extends [infer F, ...infer R]
-  ? [...A, F]["length"] extends N
-    ? [[...A, F], ...Chunk<R, N, []>]
-    : Chunk<R, N, [...A, F]>
-  : A extends []
-  ? []
-  : [A];
-
-// 더 깔끔한 풀이
-//   type Chunk<
-//   T,
-//   N,
-//   S extends unknown[] = [],
-//   A extends unknown[] = []
-// > = T extends [infer F, ...infer R]
-//   ? S["length"] extends N
-//     ? Chunk<T, N, [], [...A, S]>
-//     : Chunk<R, N, [...S, F], A>
-//   : S extends []
-//   ? A
-//   : [...A, S];
+  ? S["length"] extends N
+    ? Chunk<T, N, [], [...A, S]>
+    : Chunk<R, N, [...S, F], A>
+  : S extends []
+  ? A
+  : [...A, S];

@@ -9,12 +9,18 @@ type cases = [
 
 // ============= Your Code Here =============
 type ToUnion<T> = T extends number[] ? T[number] : T;
+type Without<T, U> = T extends [infer F extends number, ...infer R]
+  ? F extends ToUnion<U>
+    ? [...Without<R, U>]
+    : [F, ...Without<R, U>]
+  : [];
 
-type Without<T, U, A extends number[] = []> = T extends [
-  infer C extends number,
-  ...infer R
-]
-  ? C extends ToUnion<U>
-    ? Without<R, U, A>
-    : Without<R, U, [...A, C]>
-  : A;
+// 다른 방법
+// type Without<T, U, A extends number[] = []> = T extends [
+//   infer F extends number,
+//   ...infer R
+// ]
+//   ? F extends ToUnion<U>
+//     ? Without<R, U, A>
+//     : Without<R, U, [...A, F]>
+//   : A;
