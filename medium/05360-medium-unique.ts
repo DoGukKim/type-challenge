@@ -20,17 +20,14 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type InCludes<A extends any[], T> = A extends [infer C, ...infer R]
-  ? Equal<C, T> extends true
+type Includes<T extends any[], U> = T extends [infer F, ...infer R]
+  ? Equal<F, U> extends true
     ? true
-    : InCludes<R, T>
+    : Includes<R, U>
   : false;
 
-type Unique<T extends any[], A extends any[] = []> = T extends [
-  infer C,
-  ...infer R
-]
-  ? InCludes<A, C> extends true
+type Unique<T, A extends any[] = []> = T extends [infer F, ...infer R]
+  ? Includes<A, F> extends true
     ? Unique<R, A>
-    : Unique<R, [...A, C]>
+    : Unique<R, [...A, F]>
   : A;

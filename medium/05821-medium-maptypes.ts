@@ -65,10 +65,10 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type MapTypes<T, U extends { mapFrom: any; mapTo: any }> = {
-  [P in keyof T]: T[P] extends U["mapFrom"]
-    ? U extends { mapFrom: T[P] }
-      ? U["mapTo"]
+type MapTypes<T, R extends { mapFrom: any; mapTo: any }> = {
+  [P in keyof T]: T[P] extends R["mapFrom"]
+    ? R extends { mapFrom: T[P]; mapTo: infer M }
+      ? M
       : never
     : T[P];
 };

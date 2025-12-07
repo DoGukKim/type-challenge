@@ -10,8 +10,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type LastIndexOf<T extends any[], U> = T extends [...infer R, infer C]
-  ? Equal<C, U> extends true
+type LastIndexOf<T, U> = T extends [...infer R, infer L]
+  ? Equal<L, U> extends true
     ? R["length"]
     : LastIndexOf<R, U>
   : -1;
