@@ -15,10 +15,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Trunc<T extends string | number> = `${T}` extends `${infer F}.${string}`
-  ? F extends ""
-    ? "0"
-    : F extends "-"
-    ? "-0"
-    : F
+type Trunc<T extends string | number> = `${T}` extends `${infer I}.${string}`
+  ? I extends "" | "-"
+    ? `${I}0`
+    : I
   : `${T}`;

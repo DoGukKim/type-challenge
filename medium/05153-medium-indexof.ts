@@ -12,11 +12,8 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type IndexOf<T extends any[], U, A extends any[] = []> = T extends [
-  infer C,
-  ...infer R
-]
-  ? Equal<C, U> extends true
-    ? A["length"]
-    : IndexOf<R, U, [...A, C]>
+type IndexOf<T, U, I extends number[] = []> = T extends [infer F, ...infer R]
+  ? Equal<F, U> extends true
+    ? I["length"]
+    : IndexOf<R, U, [...I, 0]>
   : -1;
