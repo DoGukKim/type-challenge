@@ -152,14 +152,16 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Init<N extends number, A extends number[] = []> = A["length"] extends N
-  ? A
-  : Init<N, [...A, 0]>;
+type InitStartRange<
+  N extends number,
+  A extends number[] = []
+> = A["length"] extends N ? A : InitStartRange<N, [...A, 0]>;
+
 type NumberRange<
   L extends number,
   H extends number,
-  Arr extends number[] = Init<L>,
+  Range extends number[] = InitStartRange<L>,
   Result extends number[] = []
-> = Arr["length"] extends H
-  ? [...Result, Arr["length"]][number]
-  : NumberRange<L, H, [...Arr, 0], [...Result, Arr["length"]]>;
+> = Range["length"] extends H
+  ? [...Result, Range["length"]][number]
+  : NumberRange<L, H, [...Range, 0], [...Result, Range["length"]]>;

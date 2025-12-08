@@ -10,18 +10,18 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type CheckPostUniqueChar<
-  R,
-  T extends string
-> = R extends `${string}${T}${string}` ? false : true;
+type IsUniqueInRest<
+  Rest extends string,
+  Char extends string
+> = Rest extends `${string}${Char}${string}` ? false : true;
 
 type FirstUniqueCharIndex<
   S extends string,
-  P extends string[] = []
+  Processed extends string[] = []
 > = S extends `${infer C}${infer R}`
-  ? C extends P[number]
-    ? FirstUniqueCharIndex<R, [...P, C]>
-    : CheckPostUniqueChar<R, C> extends true
-    ? P["length"]
-    : FirstUniqueCharIndex<R, [...P, C]>
+  ? C extends Processed[number]
+    ? FirstUniqueCharIndex<R, [...Processed, C]>
+    : IsUniqueInRest<R, C> extends true
+    ? Processed["length"]
+    : FirstUniqueCharIndex<R, [...Processed, C]>
   : -1;

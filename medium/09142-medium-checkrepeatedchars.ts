@@ -9,7 +9,7 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type CheckRepeatedChars<T extends string> = T extends `${infer C}${infer R}`
+type CheckRepeatedChars<S extends string> = S extends `${infer C}${infer R}`
   ? R extends `${string}${C}${string}`
     ? true
     : CheckRepeatedChars<R>
