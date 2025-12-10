@@ -11,23 +11,23 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Split<
-  S extends string,
-  T extends string,
-  A extends string[] = []
-> = S extends `${infer P}${T}${infer R}` ? Split<R, T, [...A, P]> : [...A, S];
+type ParseUrlParams<Url> = Url extends `${string}:${infer ParamName}`
+  ? ParamName extends `${infer CurrentParam}/${infer RestUrl}`
+    ? CurrentParam | ParseUrlParams<RestUrl>
+    : ParamName
+  : never;
 
-type PickParams<T, A extends string[] = []> = T extends [infer F, ...infer R]
-  ? F extends `:${infer Param}`
-    ? PickParams<R, [...A, Param]>
-    : PickParams<R, A>
-  : A[number];
+// 다른 풀이 방법
+// type Split<
+//   S extends string,
+//   T extends string,
+//   A extends string[] = []
+// > = S extends `${infer P}${T}${infer R}` ? Split<R, T, [...A, P]> : [...A, S];
 
-type ParseUrlParams<T extends string> = PickParams<Split<T, "/">>;
+// type PickParams<T, A extends string[] = []> = T extends [infer F, ...infer R]
+//   ? F extends `:${infer Param}`
+//     ? PickParams<R, [...A, Param]>
+//     : PickParams<R, A>
+//   : A[number];
 
-// 더 좋은 풀이
-// type ParseUrlParams<T> = T extends `${string}:${infer R}`
-//   ? R extends `${infer P}/${infer L}`
-//     ? P | ParseUrlParams<L>
-//     : R
-//   : never
+// type ParseUrlParams<T extends string> = PickParams<Split<T, "/">>;
