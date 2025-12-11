@@ -17,12 +17,8 @@ type cases1 = [
 ];
 
 // ============= Your Code Here =============
-type IsInteger<N extends number> = `${N}` extends `${string}.${string}`
-  ? false
-  : true;
-
-type Integer<T extends number> = IsInteger<T> extends true
-  ? number extends T
-    ? never
-    : T
-  : never;
+type Integer<T extends number> = number extends T
+  ? never
+  : `${T}` extends `${string}.${string}`
+  ? never
+  : T;
