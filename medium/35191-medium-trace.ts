@@ -1,5 +1,5 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import { Equal, Expect } from "../test-utils";
 
 type cases = [
   Expect<Equal<Trace<[[1, 2], [3, 4]]>, 1 | 4>>,

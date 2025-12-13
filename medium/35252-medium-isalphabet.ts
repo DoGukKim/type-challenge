@@ -11,34 +11,36 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type AlphabetTuple = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z"
-];
-type IsAlphabet<S extends string> = Lowercase<S> extends AlphabetTuple[number]
+type Alphabet =
+  | "a"
+  | "b"
+  | "c"
+  | "d"
+  | "e"
+  | "f"
+  | "g"
+  | "h"
+  | "i"
+  | "j"
+  | "k"
+  | "l"
+  | "m"
+  | "n"
+  | "o"
+  | "p"
+  | "q"
+  | "r"
+  | "s"
+  | "t"
+  | "u"
+  | "v"
+  | "w"
+  | "x"
+  | "y"
+  | "z";
+
+type UpperAlphabet = Uppercase<Alphabet>;
+
+type IsAlphabet<S extends string> = S extends Alphabet | UpperAlphabet
   ? true
   : false;
