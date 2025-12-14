@@ -13,5 +13,5 @@ type cases = [
 
 // ============= Your Code Here =============
 type PublicType<T extends object> = {
-  [P in keyof T as P extends `_${string}` ? never : P]: T[P];
+  [K in keyof T as K extends `_${string}` ? never : K]: T[K];
 };
