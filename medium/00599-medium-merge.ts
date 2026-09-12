@@ -20,7 +20,7 @@ type cases = [
         c: boolean;
       }
     >
-  >
+  >,
 ];
 
 // ============= Your Code Here =============
@@ -41,3 +41,9 @@ type Merge<F, S> = {
 //     ? F[P]
 //     : never;
 // };
+
+// 방법4
+// type FlatObject<T> = {
+//   [P in keyof T]: T[P];
+// };
+// type Merge<F, S> = FlatObject<Omit<F, keyof (F | S)> & S>;
