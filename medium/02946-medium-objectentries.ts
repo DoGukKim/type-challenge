@@ -22,12 +22,17 @@ type cases = [
       ObjectEntries<{ key: string | undefined }>,
       ["key", string | undefined]
     >
-  >
+  >,
 ];
 
 // ============= Your Code Here =============
-type ObjectEntries<
-  T,
-  R = Required<T>,
-  U extends keyof R = keyof R
-> = U extends keyof R ? [U, R[U] extends never ? undefined : R[U]] : never;
+type ObjectEntries<T, R = Required<T>> = {
+  [P in keyof R]: [P, R[P] extends never ? undefined : R[P]];
+}[keyof R];
+
+// 방법2
+// type ObjectEntries<
+//   T,
+//   R = Required<T>,
+//   U extends keyof R = keyof R
+// > = U extends keyof R ? [U, R[U] extends never ? undefined : R[U]] : never;
